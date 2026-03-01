@@ -27,8 +27,8 @@ Since I use a custom build script, you don't need to worry about complex gcc fla
 ### 1. Clone the repository:
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/cli_tool.git
-cd cli_tool
+git clone https://github.com/Jamie-Andrews1/contact-manager-c
+cd contact-manager-c-main
 ```
 
 ### 2. Make the build script executable:
