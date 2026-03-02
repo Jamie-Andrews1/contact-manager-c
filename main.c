@@ -144,6 +144,56 @@ int main(int argc, char *argv[])
             i++;
         }
         break;
+    case 's':
+        i++;
+        char search[] = "search";
+        if (!argv[2])
+        {
+            print_missing("oops!, parameter missed, must have search and a name.\n");
+            return (0);
+        }
+        while (input[i] == search[i])
+        {
+            if (input[i] == '\0')
+            {
+                char myPath[256];
+                getPath(myPath, sizeof(myPath), CSV_NAME);
+
+                FILE *fp = fopen(myPath, "r");
+                if (fp == NULL)
+                {
+                    print_missing("Nothing saved to the list");
+                    return (0);
+                }
+
+                int lines = 0;
+                char buf[150];
+                Contact *ContactList = malloc(sizeof(Contact) * MAXCONTACTS);
+                if (ContactList == NULL)
+                    return 1;
+                while (lines < MAXCONTACTS && fgets(buf, sizeof buf, fp) != NULL)
+                {
+                    Contact temp;
+                    int assigned = sscanf(buf, "%49[^,],%19[^,],%49s",
+                                          temp.name,
+                                          temp.phone,
+                                          temp.email);
+
+                    if (assigned == 3)
+                    {
+                        ContactList[lines] = addContact(temp.name, temp.phone, temp.email);
+                        lines++;
+                    }
+                }
+                fclose(fp);
+                find_contact(ContactList, argv[2], lines);
+
+                free(ContactList);
+                return (0);
+            }
+            i++;
+        }
+        break;
     default:
         print_error("Command Not Found, must be add, list or delete.");
         return (0);

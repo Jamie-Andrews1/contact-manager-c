@@ -60,6 +60,26 @@ int is_file_empty(const char *filename) {
     }
 }
 
+void find_contact (Contact *list, char *name_to_find, int count){
+
+    char *toFind = name_to_find; 
+
+    for (int i = 0; i < count; i++)
+    {
+        char *name = list[i].name;
+          for ( ; *name == *toFind && *name != '\0'; name++, toFind++){
+          ;
+        }
+        if (*name == '\0' && *toFind == '\0')
+        {
+            print_contacts(&list[i], 1);
+            return; 
+        }
+    }
+    printf("Could not find an entry with %s", toFind);
+
+}
+
 void remove_contact(Contact *list, char *name_to_delete, int count)
 {
     char tempPath[100];

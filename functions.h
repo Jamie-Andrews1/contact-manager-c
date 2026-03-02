@@ -18,5 +18,6 @@ void print_missing(char *msg);
 void print_error(char *msg);
 void print_success(char *msg); 
 void print_contacts(Contact *list, int count);
+void find_contact (Contact *list, char *name_to_find, int count);
 
 #endif

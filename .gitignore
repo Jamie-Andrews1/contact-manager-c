@@ -36,6 +36,7 @@
 *.x86_64
 *.hex
 contact_manager
+contacts_test
 
 # Debug files
 *.dSYM/
