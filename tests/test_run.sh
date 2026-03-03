@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# 1. Colors for Arch terminal output
+# 1. Colors for terminal output
 GREEN='\033[0;32m'
 RED='\033[0;31m'
 NC='\033[0m' # No Color
@@ -27,6 +27,15 @@ if grep -q "Archie" ~/Documents/contacts.csv; then
 else
     echo -e "${RED}[FAIL]${NC} Contact was NOT found in the file."
     exit 1
+fi
+
+./contacts_test delete Archie
+
+if grep -q "Archie" ~/Documents/contacts.csv; then
+    echo -e "${RED}[FAIL]${NC} Contact was NOT removed successfully."
+    exit 1
+else
+    echo -e "${GREEN}[PASS]${NC} Contact successfully removed from CSV."
 fi
 
 echo -e "${GREEN}All Bash tests passed!${NC}"
